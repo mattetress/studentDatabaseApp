@@ -9,7 +9,7 @@ public class Student {
 	private int gradeYear;
 	private String studentID;
 	private String courses;
-	private int tuitionBalance;
+	private int tuitionBalance = 0;
 	private static int costOfCourse = 600;
 	private static int id = 1000;
 	
@@ -47,10 +47,33 @@ public class Student {
 	
 	
 	// enroll in courses
+	public void enroll() {
+		// Get inside a loop, user hits 0 
+		do {
+			System.out.print("Enter course to enroll (0 to quit): ");
+			Scanner in = new Scanner(System.in);
+			String course = in.nextLine();
+			if (!course.equals("Q")) {
+				courses = courses + "\n" + course;
+				tuitionBalance += costOfCourse;
+			} else { break; }
+			
+		} while (1 != 0);
+		System.out.println("Enrolled in Courses: \n" + courses );
+		System.out.println("Tuition Balance: $" + tuitionBalance);
+	}
 	
 	// view balance 
+	public void viewBalance() {
+		System.out.println("Your balance is: $" + tuitionBalance);
+	}
 	
 	// pay tuition
+	public void payTuition(int payment) {
+		tuitionBalance -= payment;
+		System.out.println("Thank you for your payment of $" + payment);
+		viewBalance();
+	}
 	
 	// show status
 
